@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BudgerPlannerComponent } from './budger-planner/budger-planner.component';
 import { LoginComponent } from './budger-planner/login/login.component';
+import { SideNavComponent } from './budger-planner/side-nav/side-nav.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,11 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent,
       },
+      {
+        path: 'side-nav',
+        component : SideNavComponent
+      },
+
     ],
   },
 ];
