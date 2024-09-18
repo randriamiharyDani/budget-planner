@@ -1,0 +1,84 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: aliceblue;
+}
+
+.navbar {
+  background-color: #008080;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  color: #ffffff;
+  font-family: bold;
+}
+
+.login-container{
+  max-width: 400px;
+  margin: 100px auto 50px auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+ @apply shadow-custom;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 40px;
+}
+
+ .login-container h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-grop{
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"] ,
+input[type="password"] {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #008080;
+  background-color: #f5f5f5f5;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus{
+  outline: none;
+  border: 1px solid #008080;
+}
+
+button {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #008080;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #00695c;
+}
+
+p{
+  text-align: center;
+  // margin-top: 20px;
+  color: #666666;
+  transition: background-color 0.3s ease;
+
+}
+.highlighed {
+  text-decoration: underline;
+}
+
+.highlighed:hover{
+  color:#80ce86
+}
