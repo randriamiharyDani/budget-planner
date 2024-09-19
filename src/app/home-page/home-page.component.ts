@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home-page',
   standalone: true,
@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
+  constructor( private router : Router){}
 
+  toGoLogin(): void {
+    this.router.navigate(['budget-planner/login'])
+  }
 }
