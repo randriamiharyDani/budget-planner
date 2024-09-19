@@ -2,12 +2,96 @@
 <app-side-nav></app-side-nav>
 <div class="container">
     <div class="card-container">
+       <!-- income -->
         <div class="card">
             <div class="card-header">
-              <span class="icon icome-icon"> <mat-icon> attach_money </mat-icon> </span>
+              <span class="icon icome-icon"> <mat-icon> ​💲​ </mat-icon> </span>
               <h2>icome</h2>
             </div>
           <hr>
+
+          <div class="income-details">
+            <div class="month">
+                <h3>Last Few Month</h3>
+                <ul>
+                  <li *ngFor="let monthIcome of lastMonthsIncome " >{{monthIcome}}</li>
+                </ul>
+            </div>
+            <div class="month">
+              <h3>Current Month</h3>
+              <p> {{curruntMontIncome}} </p>
+            </div>
+
+          </div>
+            <button type="" (click)="onIncome()" >view</button>
+
         </div>
+
+        <!-- expense -->
+          <div class="card">
+            <div class="card-header">
+              <span class="icon icome-icon"> <mat-icon>🟢​​ </mat-icon> </span>
+              <h2>expense</h2>
+            </div>
+          <hr>
+
+          <div class="income-details">
+            <div class="month">
+                <h3>Last Few Expense</h3>
+                <ul>
+                  <li *ngFor="let monthExpense of lastMonthsExpense " >{{monthExpense}}</li>
+                </ul>
+            </div>
+            <div class="month">
+              <h3>Current expense</h3>
+              <p> {{curruntMontExpense}} </p>
+            </div>
+          </div>
+            <button type="" (click)="onExpense()" >view</button>
+
+        </div>
+        <!-- to do transaction -->
+         <div class="card">
+            <div class="card-header">
+              <span class="icon icome-todo"> <mat-icon> 💉​ </mat-icon> </span>
+              <h2>to do transaction </h2>
+            </div>
+          <hr>
+            <ul>
+              <li *ngFor="let item of todoTransaction">
+                  <span class="transaction-status">
+                      <mat-icon>​👉​</mat-icon>
+                  </span>
+                  <span class="transaction-details">{{ item.description  }}</span>
+              </li>
+            </ul>
+           <button type="" (click)="onExpense()" >view</button>
+        </div>
+        <!-- total -->
+            <div class="card">
+            <div class="card-header">
+              <span class="icon icome-todo"> <mat-icon> 😊​​ </mat-icon> </span>
+              <h2>Total </h2>
+            </div>
+          <hr>
+          <div class="total-details">
+              <div class="total-item">
+                  <span> <mat-icon>​👉</mat-icon> </span>
+                  <h3>current month income</h3>
+                  <p> {{totalCuruntMonthIncome | currency }} </p>
+              </div>
+                <div class="total-item">
+                  <span>​👉</span>
+                  <h3>current month expense</h3>
+                  <p> {{totalCuruntMonthExpence |currency }} </p>
+              </div>
+                <div class="total-item">
+                  <span>​💲</span>
+                  <h3>total month savings</h3>
+                  <p> {{currentMonthMovings | currency}} </p>
+              </div>
+          </div>
+        </div>
+
     </div>
 </div>

@@ -4,6 +4,7 @@ import { BudgerPlannerComponent } from './budger-planner/budger-planner.componen
 import { LoginComponent } from './budger-planner/login/login.component';
 import { SideNavComponent } from './budger-planner/side-nav/side-nav.component';
 import { DashboardComponent } from './budger-planner/dashboard/dashboard.component';
+import { IncomeComponent } from './budger-planner/income/income.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,10 @@ export const routes: Routes = [
         path : 'dashboard',
         component : DashboardComponent
       },
+      {
+        path : 'income',
+        component : IncomeComponent
+      }
 
     ],
   },
