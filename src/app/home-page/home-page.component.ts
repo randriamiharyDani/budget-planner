@@ -11,6 +11,6 @@ export class HomePageComponent {
   constructor( private router : Router){}
 
   toGoLogin(): void {
-    this.router.navigate(['budget-planner/login'])
+    this.router.navigate(['budget-planner/login']) ;
   }
 }
