@@ -11,7 +11,7 @@
         <select formControlName="month" id="month" class="form-control" (change)="onChange($event)">
           <option value="" disabled>Select Month</option>
           <option value="january">January</option>
-          <option value="febroary">febroary</option>
+          <option value="february">febroary</option>
           <option value="march">March</option>
 
         </select>
@@ -22,20 +22,66 @@
           </div>
       </div>
       <div class="form-group">
+            <label for="investment">investments :</label>
+            <select formArrayName="investment" id="investment" class="form-control"
+            [class.disabled-dropdown]="!monthSelcted"  >
+              <option value="" disabled >Select Investment</option>
+              <option value="401(K)">401(k)</option>
+              <option value="stocks">Stocks</option>
+              <option value="real_estate">Real Estate</option>
 
+            </select>
       </div>
       <div class="form-group">
-
+          <label for="source">Source :</label>
+          <select formArrayName="source" id="source" class="form-control"
+          [class.desabled-dropdown]="!monthSelcted">
+              <option value=""disabled >Select Source</option>
+              <option value="salary">Salary</option>
+              <option value="freenlincing">Freenlincing</option>
+              <option value="rental_income">Rental income</option>
+          </select>
       </div>
       <div class="form-group">
-
+          <label for="amount">Amount :</label>
+          <input type="number" id="amount" formArrayName="amout" class="form-control"
+          placeholder="Enter Amount" [class.disabled-dropdown]="!selectedMonth" >
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
 
-      </div>
+      </div> -->
+
+      <button type="submit" class="btn btn-primary" (click)="onSubmit() "
+      [class.desabled-dropdown]="!monthSelcted">Add</button>
     </form>
 
     <hr>
-
+    <h3> Income List - {{selectedMonth}} </h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Investment</th>
+            <th>Source</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let income of getFilteredIncome()">
+            <td>{{selectedMonth}}</td>
+            <td>{{income.investment}}</td>
+            <td>{{income.source}}</td>
+            <td>{{income.amount}}</td>
+            <td>
+              <!-- <button (click)="onDelete(i, selectedMonth)">Delete</button> -->
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    <div class="input-form">
+      <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
+      <button type="button" class="btn btn-primary" (click)="onExport()">Export</button>
+    </div>
   </div>
 </div>

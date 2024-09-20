@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-income',
@@ -15,22 +16,25 @@ export class IncomeComponent {
   selectedMonth: any;
 
   januaryIncome: any[] = [
-    { source: 'Salary', amount: '5000', investment: '401k' },
-    { source: 'Freenlincing', amount: '1000', investment: 'stock' }
+    { source: 'Salary', amount: '5000', investment: '401(K)' },
+    { source: 'Freenlincing', amount: '1000', investment: 'stocks' }
   ];
 
   febroaryIncome: any[] = [
-    { source: 'Salary', amount: '5500', investment: '401k' },
-    { source: 'rental income', amount: '700', investment: 'real estate' }
+    { source: 'Salary', amount: '5500', investment: '401(K)' },
+    { source: 'rental_income', amount: '700', investment: 'real_estate' }
   ];
 
   marchIncome: any[] = [
-    { source: 'Salary', amount: '500', investment: '401k' },
-    { source: 'Freenlincing', amount: '1200', investment: 'stock' },
-    { source: 'rental income', amount: '600', investment: 'real estate' }
+    { source: 'salary', amount: '500', investment: '401(K)' },
+    { source: 'freenlincing', amount: '1200', investment: 'stocks' },
+    { source: 'rental_income', amount: '600', investment: 'real_estate' }
   ];
 
-  constructor(public fb: FormBuilder) {
+
+  monthSelcted:boolean = false ;
+
+  constructor(public fb: FormBuilder ,  public router : Router) {
       const currentDate = new Date() ;
       this.selectedMonth = currentDate.toLocaleString('default', { month: 'long' });
   }
@@ -51,6 +55,7 @@ export class IncomeComponent {
 
   onChange(event: any): void {
     this.selectedMonth = event.target.value;
+    this.monthSelcted =true ;
     this.getFilteredIncome();
   }
 
@@ -58,9 +63,9 @@ export class IncomeComponent {
       switch(month) {
         case 'january' :
         return this.januaryIncome ;
-        case 'February' :
+        case 'february' :
           return this.febroaryIncome;
-        case 'March' :
+        case 'march' :
           return this.marchIncome;
         default :
         return []
@@ -90,9 +95,19 @@ export class IncomeComponent {
       case 'March':
         filteredIncome = [...this.marchIncome];
         break;
+
         default :
         break
     }
     return filteredIncome;
+  }
+
+  onReset() :void {
+    console.log("form saved")
+  }
+
+  onExport(): void{
+    console.log("generate expert report");
+    this.router.navigate(['/budget-planner/dashboard']);
   }
 }

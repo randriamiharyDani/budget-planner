@@ -56,7 +56,7 @@ toggleForm(form : 'login'| 'register'){
   login(): void {
     if (this.loginForm.valid) {
       console.log("login--->" , this.loginForm.value);
-      this.route.navigate(["budget-planner/dashbord"])
+      this.route.navigate(["/budget-planner/dashboard"])
     }
     else{
       this.snackbar.open("invalid email or password" ,'close' , {duration : 3000})
@@ -76,5 +76,7 @@ toggleForm(form : 'login'| 'register'){
     }
   }
 
+// loginConnected() :void {
 
+// }
 }
