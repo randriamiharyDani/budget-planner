@@ -49,9 +49,7 @@ export class IncomeComponent {
     })
   }
 
-  onSubmit(): void {
 
-  }
 
   onChange(event: any): void {
     this.selectedMonth = event.target.value;
@@ -100,6 +98,29 @@ export class IncomeComponent {
         break
     }
     return filteredIncome;
+  }
+
+  onSubmit(): void {
+    if(this.incomeForm.valid){
+      const newIncome = this.incomeForm.value ;
+      // add new income to the selected month income list
+      switch(this.selectedMonth) {
+        case 'january':
+          this.januaryIncome.push(newIncome);
+          break;
+        case 'February':
+          this.febroaryIncome.push(newIncome);
+          break;
+        case 'March':
+          this.marchIncome.push(newIncome);
+          break;
+          default :
+          break
+      }
+      this.incomeForm.reset();
+      this.incomeForm.patchValue({ month: '' , source: '', amount: '' , investment:'' })
+
+    }
   }
 
   onReset() :void {
