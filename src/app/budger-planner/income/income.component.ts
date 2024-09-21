@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './income.component.html',
   styleUrl: './income.component.scss'
 })
-export class IncomeComponent {
+export class IncomeComponent implements OnInit{
 
   incomeForm: any;
   selectedMonth: any;
@@ -32,31 +32,31 @@ export class IncomeComponent {
   ];
 
 
-  monthSelcted:boolean = false ;
+  monthSelected:boolean = false ;
 
   constructor(public fb: FormBuilder ,  public router : Router) {
       const currentDate = new Date() ;
       this.selectedMonth = currentDate.toLocaleString('default', { month: 'long' });
   }
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.incomeForm = this.fb.group({
-      month: ['', Validators.required],
-      source: ['', Validators.required],
-      amount: ['', Validators.required],  // champ requis
-      investment: ['', Validators.required]
-    })
-  }
+ngOnInit(): void {
+  this.incomeForm = this.fb.group({
+    month: ['', Validators.required],  // Champ requis
+    source: ['', Validators.required],  // Champ requis
+    amount: ['', [Validators.required, Validators.min(1)]],  // Champ requis et doit être > 0
+    investment: ['', Validators.required]  // Champ requis
+  });
+}
+
 
 
 
   onChange(event: any): void {
     this.selectedMonth = event.target.value;
-    this.monthSelcted =true ;
+    this.monthSelected =true ;
     this.getFilteredIncome();
   }
 
+        // get income month
     getIncomeForMonth(month: string) :any[] {
       switch(month) {
         case 'january' :
@@ -68,66 +68,72 @@ export class IncomeComponent {
         default :
         return []
       }
-
   }
 
+  // cl=alculer total income
   calculateTotalIncome(month: string): number {
+    // initilize 0 le total
     let totalIncome = 0;
     for(const income of this.getIncomeForMonth(month)) {
       totalIncome += Number(income.amount);
     }
     return totalIncome;
-
   }
 
+// filtred income
 
   getFilteredIncome() {
     let filteredIncome: any[] = [];
     switch (this.selectedMonth) {
-      case 'January':
+      case 'january':
         filteredIncome = [...this.januaryIncome];
         break;
-      case 'February':
+      case 'february':
         filteredIncome = [...this.febroaryIncome];
         break;
-      case 'March':
+      case 'march':
         filteredIncome = [...this.marchIncome];
         break;
-
         default :
         break
     }
     return filteredIncome;
   }
 
-  onSubmit(): void {
+  // push data
+
+  onSubmit() {
     if(this.incomeForm.valid){
-      const newIncome = this.incomeForm.value ;
       // add new income to the selected month income list
+      const dataForm = this.incomeForm.value ;
+
+      console.log(dataForm);
+
       switch(this.selectedMonth) {
         case 'january':
-          this.januaryIncome.push(newIncome);
+          this.januaryIncome.push(dataForm);
           break;
-        case 'February':
-          this.febroaryIncome.push(newIncome);
+        case 'february':
+          this.febroaryIncome.push(dataForm);
           break;
-        case 'March':
-          this.marchIncome.push(newIncome);
+        case 'march':
+          this.marchIncome.push(dataForm);
           break;
           default :
-          break
+          break ;
       }
       this.incomeForm.reset();
-      this.incomeForm.patchValue({ month: '' , source: '', amount: '' , investment:'' })
-
-    }
+      this.incomeForm.patchValue({month: '' , source: '', amount: '' , investment:'' })
+    }else {
+    console.error('Le formulaire est invalide');
+  }
   }
 
-  onReset() :void {
+  onReset(){
     console.log("form saved")
   }
 
-  onExport(): void{
+  onExport(){
     console.log("generate expert report");
     this.router.navigate(['/budget-planner/dashboard']);
   }

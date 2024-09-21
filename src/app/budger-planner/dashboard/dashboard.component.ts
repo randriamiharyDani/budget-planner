@@ -40,7 +40,7 @@ totalCuruntMonthExpence = 1500;
   }
 
   onExpense(): void {
-    this.router.navigate(['budger-planner/expense']);
+    this.router.navigate(['budget-planner/expense']);
   }
 
   get currentMonthMovings() :number {
