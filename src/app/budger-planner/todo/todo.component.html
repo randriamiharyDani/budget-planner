@@ -1,12 +1,12 @@
 <div class="navbar">
-  <h2> EXPENSE </h2>
+  <h2> TO DO TRANSACTIONS</h2>
 </div>
 
 <div class="main-container">
   <div class="container">
-    <h2>Income</h2>
+    <h2>to do transactions</h2>
 
-    <form [formGroup]="expenseForm" (ngSubmit)="onSubmitExpense()" class="input-form">
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmitExpense()" class="input-form">
       <div class="form-group">
         <select formControlName="month" id="month" class="form-control" (change)="onChange($event)">
           <option value="" disabled>Select Month</option>
@@ -17,29 +17,25 @@
       </div>
       <div class="form-group">
           <div class="total-income">
-              total Income For {{selectedMonth}}: ${{calculateTotalExpense(selectedMonth)}}
+              total to do's for {{selectedMonth}}: ${{calculateTotalExpense(selectedMonth)}}
           </div>
       </div>
 
       <div class="form-group">
-            <label for="expenseType"> Expense Type :</label>
-            <select formControlName="expenseType" id="expenseType" class="form-control"
-            [class.disabled-dropdown]="!monthSelected"  >
-              <option value="" disabled >Select Expense Type</option>
-              <option value="Rent">Rent</option>
-              <option value="Grocerries">Grocerrie</option>
-              <option value="Utilities">Utilitue</option>
-            </select>
+            <label for="expenseType"> Transaction Type :</label>
+            <input type="text" formControlName="expenseType" id="TransactionType" class="form-control"
+            [class.disabled-dropdown]="!monthSelected" placeholder="enter " >
+
       </div>
 
       <div class="form-group">
           <label for="amount">Amount :</label>
-          <input type="number" formControlName="expenseAmount" id="expenseAmount" class="form-control"
+          <input type="number" formControlName="expenseAmount" id="TransactionAmount" class="form-control"
           placeholder="enter amount" [class.disabled-dropdown]="!monthSelected" >
       </div>
 
       <button type="submit" class="btn btn-primary"
-      [class.disabled-dropdown]="!monthSelected">Add</button>
+      [class.disabled-dropdown]="!monthSelected">Add transaction</button>
     </form>
 
     <hr>
@@ -48,7 +44,7 @@
     <table class="table">
         <thead>
           <tr>
-            <th>Expense Type</th>
+            <th>Transaction Type</th>
             <th>Amount</th>
 
           </tr>
@@ -57,9 +53,9 @@
 
           <!-- for loop -->
 
-          <tr *ngFor="let expense of getFilteredExpense()">
-            <td>{{expense.expenseType}}</td>
-            <td>{{expense.expenseAmount}}</td>
+          <tr *ngFor="let todoTrans of getFilteredExpense()">
+            <td [ngClass]="{'strikeaut' : todoTrans.selected}" (click)="toggleSelection()" >{{todoTrans.expenseType}}</td>
+            <td>{{todoTrans.expenseAmount}}</td>
 
           </tr>
         </tbody>

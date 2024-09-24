@@ -46,4 +46,8 @@ totalCuruntMonthExpence = 1500;
   get currentMonthMovings() :number {
    return this.totalCuruntMonthIncome - this.totalCuruntMonthExpence ;
   }
+
+  onToDo() : void {
+    this.router.navigate(['budget-planner/todo']);
+  }
 }

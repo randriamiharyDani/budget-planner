@@ -4,15 +4,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-expense',
+  selector: 'app-todo',
   standalone: true,
   imports: [ReactiveFormsModule , CommonModule],
-  templateUrl: './expense.component.html',
-  styleUrl: './expense.component.scss'
+  templateUrl: './todo.component.html',
+  styleUrl: './todo.component.scss'
 })
-export class ExpenseComponent {
-
-  expenseForm:any ;
+export class TodoComponent {
+ todoForm:any ;
   selectedMonth: string;
 
 
@@ -24,18 +23,18 @@ export class ExpenseComponent {
   ];
 
   januaryExpense: any[] = [
-    { expenseType: 'Rent', expenseAmount: '1000' },
-    { expenseType: 'Grocerries', expenseAmount: '500' }
+    { expenseType: 'Recharge', expenseAmount: '1000' },
+    { expenseType: 'Light bills', expenseAmount: '500' }
   ];
 
   febroaryExpense: any[] = [
-    { expenseType: 'Grocerries', expenseAmount: '200' },
-    { expenseType: 'Utilities', expenseAmount: '400' }
+    { expenseType: 'Essentialy', expenseAmount: '200' },
+    { expenseType: 'Light bills', expenseAmount: '400' }
   ];
 
   marchExpense: any[] = [
-    { expenseType: 'Rent', expenseAmount: '1100' },
-    { expenseType: 'Utilities', expenseAmount: '250'},
+    { expenseType: 'Recharge', expenseAmount: '1100' },
+    { expenseType: 'Essentialy', expenseAmount: '250'},
 
   ];
 
@@ -50,7 +49,7 @@ export class ExpenseComponent {
 
   ngOnInit(): void {
 
-    this.expenseForm = this.fb.group({
+    this.todoForm = this.fb.group({
       month : ['',Validators.required],
       expenseAmount : ['', Validators.required] ,
       expenseType : ['', Validators.required],// champ requis
@@ -58,7 +57,7 @@ export class ExpenseComponent {
   }
 
   onSubmitExpense() : void{
-    const dataForm = this.expenseForm.value ;
+    const dataForm = this.todoForm.value ;
 
       console.log(dataForm);
 
@@ -75,7 +74,7 @@ export class ExpenseComponent {
           default :
           break ;
       }
-      this.expenseForm.reset();
+      this.todoForm.reset();
       // this.expenseForm.patchValue({expenseType: '' , expenseAmount:'' })
     }
 
@@ -127,11 +126,17 @@ export class ExpenseComponent {
     return filteredIncome;
   }
 
+
+
   onReset(){
     console.log('save expense form');
   }
   onExport() {
     this.router.navigate(['/budget-planner/dashboard']);
+  }
+
+  toggleSelection() {
+    console.log('goooo')
   }
 
 }
