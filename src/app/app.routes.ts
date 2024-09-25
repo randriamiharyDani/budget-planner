@@ -7,6 +7,8 @@ import { DashboardComponent } from './budger-planner/dashboard/dashboard.compone
 import { IncomeComponent } from './budger-planner/income/income.component';
 import { ExpenseComponent } from './budger-planner/expense/expense.component';
 import { TodoComponent } from './budger-planner/todo/todo.component';
+import { HistoryComponent } from './budger-planner/history/history.component';
+import { ProfileComponent } from './budger-planner/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -40,6 +42,14 @@ export const routes: Routes = [
       {
         path : 'todo',
         component : TodoComponent
+      },
+      {
+        path : 'history',
+        component : HistoryComponent
+      },
+      {
+        path :'profile',
+        component : ProfileComponent
       }
 
     ],

@@ -1,0 +1,69 @@
+<div class="navbar">
+  <h2> TO DO TRANSACTIONS</h2>
+</div>
+
+<div class="main-container">
+  <div class="container">
+    <h2>to do transactions</h2>
+
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmitExpense()" class="input-form">
+      <div class="form-group">
+        <select formControlName="month" id="month" class="form-control" (change)="onChange($event)">
+          <option value="" disabled>Select Month</option>
+          <option value="january">January</option>
+          <option value="february">Febroary</option>
+          <option value="march">March</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <div class="total-income">
+              total to do's for {{selectedMonth}}: ${{calculateTotalExpense(selectedMonth)}}
+          </div>
+      </div>
+
+      <div class="form-group">
+            <label for="expenseType"> Transaction Type :</label>
+            <input type="text" formControlName="expenseType" id="TransactionType" class="form-control"
+            [class.disabled-dropdown]="!monthSelected" placeholder="enter " >
+
+      </div>
+
+      <div class="form-group">
+          <label for="amount">Amount :</label>
+          <input type="number" formControlName="expenseAmount" id="TransactionAmount" class="form-control"
+          placeholder="enter amount" [class.disabled-dropdown]="!monthSelected" >
+      </div>
+
+      <button type="submit" class="btn btn-primary"
+      [class.disabled-dropdown]="!monthSelected">Add transaction</button>
+    </form>
+
+    <hr>
+
+    <h3> Income List - {{selectedMonth}} </h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Transaction Type</th>
+            <th>Amount</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- for loop -->
+
+          <tr *ngFor="let todoTrans of getFilteredExpense()">
+            <td  >{{todoTrans.expenseType}}</td>
+            <td>{{todoTrans.expenseAmount}}</td>
+
+          </tr>
+        </tbody>
+    </table>
+    <div class="input-form">
+      <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
+      <button type="button" class="btn btn-primary" (click)="onExport()">Export</button>
+    </div>
+  </div>
+</div>
+

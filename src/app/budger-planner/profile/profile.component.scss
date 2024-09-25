@@ -1,0 +1,64 @@
+.profile-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  @apply shadow-custom;
+
+  .container-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    // gap: 20px;
+    border: 1px solid gray;
+    background-color: aquamarine;
+    border-radius: 5px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      border: 1px solid gray;
+      background-color: white;
+      margin: 10px;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .form-row{
+      display: flex;
+      flex-direction: row;
+      justify-content:space-between;
+      gap: 10px;
+      width: 500px;
+    }
+    label {
+      font-size: 16px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    input[type="tel"]{
+
+      width: 95%;
+      padding: 5px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: blue;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
