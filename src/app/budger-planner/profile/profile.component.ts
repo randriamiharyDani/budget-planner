@@ -28,9 +28,10 @@ export class ProfileComponent {
     //Add 'implements OnInit' to the class.
     this.profileForm = this._FormBulder.group({
       name : ["", Validators.required],
-      age : ["", Validators.required ,Validators.min(18)],
+      age : ["",[ Validators.required , Validators.min(18)] ],
       dob : ["",Validators.required],
-      email : ["", Validators.required, Validators.email] ,
+      email : ["", [Validators.required , Validators.email]],
+
       gender : ["", Validators.required],
       occupation :["" ,Validators.required],
       address :["" ,Validators.required],
@@ -40,9 +41,10 @@ export class ProfileComponent {
 
   onSubmit(): void {
     if(this.profileForm.valid){
-      this._router.navigate(['dashboard']);
+      // this._router.navigate(['dashboard']);
+      console.log("profil save :" ,this.profileForm.value )
     }else{
-      this._matSnackBar.open("Profile updated successfully", "Close", { duration: 2000 });
+      this._matSnackBar.open("Please fill in all fields correctly", "Close", { duration: 2000 });
     }
   }
 

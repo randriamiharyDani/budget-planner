@@ -9,6 +9,7 @@ import { ExpenseComponent } from './budger-planner/expense/expense.component';
 import { TodoComponent } from './budger-planner/todo/todo.component';
 import { HistoryComponent } from './budger-planner/history/history.component';
 import { ProfileComponent } from './budger-planner/profile/profile.component';
+import { LogoutComponent } from './budger-planner/logout/logout.component';
 
 export const routes: Routes = [
   {
@@ -50,6 +51,10 @@ export const routes: Routes = [
       {
         path :'profile',
         component : ProfileComponent
+      },
+      {
+        path : 'logout',
+        component : LogoutComponent
       }
 
     ],
